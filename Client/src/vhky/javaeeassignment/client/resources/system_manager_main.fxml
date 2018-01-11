@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+
+
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="vhky.javaeeassignment.client.controllers.SystemManagerMainPageController"
+      alignment="CENTER"
+>
+    <padding>
+        <Insets top="20" bottom="20" left="20" right="20"/>
+    </padding>
+    <Button mnemonicParsing="false" text="Register New Teacher" onAction="#onNewTeacher"/>
+    <Button mnemonicParsing="false" text="Register New Student" onAction="#onNewStudent">
+        <VBox.margin><Insets top="10"/></VBox.margin>
+    </Button>
+    <Button mnemonicParsing="false" text="Quit" onAction="#onQuit">
+        <VBox.margin><Insets top="10"/></VBox.margin>
+    </Button>
+</VBox>

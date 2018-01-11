@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
+fx:controller="vhky.javaeeassignment.client.controllers.BulletinBoardController">
+    <padding><Insets bottom="20" left="20" right="20" top="20" /></padding>
+   <children>
+      <TextArea fx:id="bulletinEditor" prefHeight="371.0" prefWidth="600.0" />
+       <HBox>
+           <VBox.margin><Insets top="20"/>  </VBox.margin>
+           <Button text="Publish" onAction="#onPublish"/>
+           <Pane HBox.hgrow="ALWAYS"/>
+           <Button text="Back" onAction="#onBack"/>
+       </HBox>
+   </children>
+</VBox>
