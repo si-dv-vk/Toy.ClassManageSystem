@@ -16,8 +16,3 @@ interface JSONConvertible<T : JSONConvertible<T>>
 	val _toJSON : JSONObject.() -> Unit
 	val _fromJSON : T.(JSONObject) -> Unit
 }
-@Target(AnnotationTarget.FIELD, AnnotationTarget.PROPERTY)
-annotation class AutoJsonMapping
-
-@Target(AnnotationTarget.FIELD, AnnotationTarget.PROPERTY)
-annotation class MannualJsonMapping()

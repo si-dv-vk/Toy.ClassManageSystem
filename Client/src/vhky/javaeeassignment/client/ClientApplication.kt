@@ -9,7 +9,7 @@ import javafx.application.Application
 import javafx.scene.Scene
 import javafx.stage.Stage
 
-class ClientApplication() : Application()
+class ClientApplication : Application()
 {
 	companion object
 	{
@@ -24,7 +24,7 @@ class ClientApplication() : Application()
 	override fun start(stage : Stage)
 	{
 		this.stage = stage
-		stage.scene = Scene(ClientResourceManifest.LOGIN())
+		stage.scene = Scene(ClientResourceManifest.STUDENT_MAIN())
 		stage.icons.add(ClientResourceManifest.UESTC_LOGO())
 		stage.title = applicationName
 		stage.isResizable = false

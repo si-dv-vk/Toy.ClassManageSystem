@@ -20,7 +20,9 @@ enum class ClientResourceManifest(private val path : String) : ResourceManifest
 	SERVER_URL("server.url"),
 	NEW_STUDENT_FORM("new_student_form.fxml"),
 	NEW_TEACHER_FORM("new_teacher_form.fxml"),
-	BULLETIN_BOARD("bulletin_board.fxml");
+	BULLETIN_BOARD("bulletin_board.fxml"),
+	STUDENT_SCORE("student_score.fxml"),
+	TEACHER_SCORE("teacher_score.fxml");
 
 	override fun getPath() : String = path
 	inline operator fun <reified T : Any> invoke() : T? = ResourceManager.load(this)

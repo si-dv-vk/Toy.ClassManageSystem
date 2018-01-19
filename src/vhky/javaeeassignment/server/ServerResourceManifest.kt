@@ -9,7 +9,8 @@ import vhky.javaeeassignment.common.utils.ResourceManifest
  */
 enum class ServerResourceManifest(private val path : String) : ResourceManifest
 {
-	SERVER_KEY("server.key");
+	SERVER_KEY("server.key"),
+	DATABASE_URL("database.url");
 	override fun getPath() : String = path
 	inline operator fun <reified T : Any> invoke() : T? = ResourceManager.load(this)
 }

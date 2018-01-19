@@ -3,7 +3,7 @@ package vhky.javaeeassignment.server.processors
 import vhky.javaeeassignment.common.data.UserType
 import vhky.javaeeassignment.common.protocol.request.RegisterNewTeacherRequest
 import vhky.javaeeassignment.common.protocol.response.SimpleSuccessResponse
-import vhky.javaeeassignment.server.database.TheDatabase
+import vhky.javaeeassignment.server.database.Database
 import vhky.javaeeassignment.server.utils.PasswordUtil
 import vhky.javaeeassignment.server.utils.ServerKey
 
@@ -13,8 +13,8 @@ import vhky.javaeeassignment.server.utils.ServerKey
  */
 
 fun onNewTeacher(request : RegisterNewTeacherRequest) = PasswordUtil.verifyPassword(request.systemManagerPassword,
-		{ TheDatabase.queryPassword(UserType.SystemManager, "")})
+		{ Database.queryPassword(UserType.SystemManager, "")})
 {
-	request.apply {TheDatabase.writeTeacher(teacher, teacherPassword[ServerKey()].first)}
+	request.apply { Database.writeTeacher(teacher, teacherPassword[ServerKey()].first)}
 	SimpleSuccessResponse().toString()
 }

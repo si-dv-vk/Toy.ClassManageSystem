@@ -1,7 +1,11 @@
 package vhky.javaeeassignment.client.controllers
 
 import javafx.fxml.FXML
+import javafx.scene.Scene
 import javafx.scene.control.Label
+import vhky.javaeeassignment.client.ClientApplication
+import vhky.javaeeassignment.client.ClientResourceManifest
+import vhky.javaeeassignment.client.data.StudentScore
 import vhky.javaeeassignment.client.utils.Bulletin
 import vhky.javaeeassignment.common.data.Student
 
@@ -42,6 +46,20 @@ class StudentMainPageController
 	private @FXML fun onCheckBulletin() = Bulletin.check()
 	private @FXML fun onQueryScore()
 	{
+		val scene = Scene(ClientResourceManifest.STUDENT_SCORE())
+		//TODO : Get data from server
+		val test = StudentScore().apply()
+		{
+			courseId = "CourseID"
+			courseName = "Fuck"
+			teacherId = "TeacherID"
+			teacherName = "Bitch"
+			score = "100"
+		}
+		StudentScoreController.instance.back = ClientApplication.instance.stage.scene
+		StudentScoreController.instance.passData(List(100, { test }))
+		ClientApplication.instance.stage.scene = scene
+
 
 	}
 	private @FXML fun onQuit()
