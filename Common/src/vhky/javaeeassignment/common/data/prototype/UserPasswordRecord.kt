@@ -1,4 +1,6 @@
-package vhky.javaeeassignment.common.data
+package vhky.javaeeassignment.common.data.prototype
+
+import vhky.javaeeassignment.common.data.UserType
 
 /**
  * No Description

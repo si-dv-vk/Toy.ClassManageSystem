@@ -3,23 +3,25 @@ package vhky.javaeeassignment.client.controllers
 import javafx.collections.FXCollections
 import javafx.fxml.FXML
 import javafx.scene.Scene
-import javafx.scene.control.*
+import javafx.scene.control.Button
+import javafx.scene.control.ChoiceBox
+import javafx.scene.control.PasswordField
+import javafx.scene.control.TextField
 import javafx.scene.image.ImageView
 import vhky.javaeeassignment.client.ClientApplication
 import vhky.javaeeassignment.client.ClientResourceManifest
-import vhky.javaeeassignment.client.utils.AlertTool
 import vhky.javaeeassignment.client.utils.ClientKey
 import vhky.javaeeassignment.client.utils.NetworkUtil
 import vhky.javaeeassignment.client.utils.alert
-import vhky.javaeeassignment.common.data.Student
-import vhky.javaeeassignment.common.data.Teacher
+import vhky.javaeeassignment.common.data.Password
 import vhky.javaeeassignment.common.data.UserType
+import vhky.javaeeassignment.common.data.prototype.Student
+import vhky.javaeeassignment.common.data.prototype.Teacher
+import vhky.javaeeassignment.common.misc.ErrorCode
 import vhky.javaeeassignment.common.protocol.messageType
 import vhky.javaeeassignment.common.protocol.request.LoginRequest
 import vhky.javaeeassignment.common.protocol.response.ErrorMessage
 import vhky.javaeeassignment.common.protocol.response.LoginResponse
-import vhky.javaeeassignment.common.data.Password
-import vhky.javaeeassignment.common.misc.ErrorCode
 import vhky.javaeeassignment.common.utils.toObject
 
 /**
@@ -73,10 +75,14 @@ class LoginPageController
 					ClientApplication.instance.stage.scene = Scene(response.type.destination())
 					when(response.type)
 					{
-						UserType.Student -> StudentMainPageController.instance.currentUser =
-								response.userData.toObject<Student>()
-						UserType.Teacher -> TeacherMainPageController.instance.currentUser =
-								response.userData.toObject<Teacher>()
+						UserType.Student -> StudentMainPageController.instance.apply {
+							currentUser = response.userData.toObject<Student>()
+							this.password = password
+						}
+						UserType.Teacher -> TeacherMainPageController.instance.apply {
+							currentUser = response.userData.toObject<Teacher>()
+							this.password = password
+						}
 						UserType.SystemManager -> SystemManagerMainPageController.instance.systemManagerPassword = password
 						UserType.TeachingManager -> TeachingManagerMainPageController.instance.teachingManagerPassword = password
 					}

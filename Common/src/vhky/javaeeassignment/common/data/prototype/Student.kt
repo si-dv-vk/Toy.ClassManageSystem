@@ -1,6 +1,8 @@
-package vhky.javaeeassignment.common.data
+package vhky.javaeeassignment.common.data.prototype
 
 import org.json.JSONObject
+import vhky.javaeeassignment.common.data.Identity
+import vhky.javaeeassignment.common.data.UserType
 import vhky.javaeeassignment.common.utils.JSONConvertible
 
 /**

@@ -7,7 +7,16 @@ import vhky.javaeeassignment.client.ClientApplication
 import vhky.javaeeassignment.client.ClientResourceManifest
 import vhky.javaeeassignment.client.data.StudentScore
 import vhky.javaeeassignment.client.utils.Bulletin
-import vhky.javaeeassignment.common.data.Student
+import vhky.javaeeassignment.client.utils.NetworkUtil
+import vhky.javaeeassignment.client.utils.alert
+import vhky.javaeeassignment.common.data.Password
+import vhky.javaeeassignment.common.data.UserType
+import vhky.javaeeassignment.common.data.prototype.Student
+import vhky.javaeeassignment.common.protocol.messageType
+import vhky.javaeeassignment.common.protocol.request.QueryScoreRequest
+import vhky.javaeeassignment.common.protocol.response.ErrorMessage
+import vhky.javaeeassignment.common.protocol.response.QueryScoreResponse
+import vhky.javaeeassignment.common.utils.toObject
 
 /**
  * No Description
@@ -36,35 +45,54 @@ class StudentMainPageController
 		schoolBox.text = field?.school
 	}
 
-	private @FXML lateinit var nameBox : Label
-	private @FXML lateinit var idBox : Label
-	private @FXML lateinit var genderBox : Label
-	private @FXML lateinit var birthdayBox : Label
-	private @FXML lateinit var majorBox : Label
-	private @FXML lateinit var schoolBox : Label
+	lateinit var password : Password
 
-	private @FXML fun onCheckBulletin() = Bulletin.check()
-	private @FXML fun onQueryScore()
+	@FXML
+	private lateinit var nameBox : Label
+	@FXML
+	private lateinit var idBox : Label
+	@FXML
+	private lateinit var genderBox : Label
+	@FXML
+	private lateinit var birthdayBox : Label
+	@FXML
+	private lateinit var majorBox : Label
+	@FXML
+	private lateinit var schoolBox : Label
+
+	@FXML
+	private fun onCheckBulletin() = Bulletin.check()
+	@FXML
+	private fun onQueryScore()
 	{
-		val scene = Scene(ClientResourceManifest.STUDENT_SCORE())
-		//TODO : Get data from server
-		val test = StudentScore().apply()
+		NetworkUtil.sendRequest(QueryScoreRequest().apply {
+			id = currentUser!!.ID
+			userType = UserType.Student
+			password = this@StudentMainPageController.password
+		})
 		{
-			courseId = "CourseID"
-			courseName = "Fuck"
-			teacherId = "TeacherID"
-			teacherName = "Bitch"
-			score = "100"
+			when(it.messageType)
+			{
+				"ErrorMessage" -> it.toObject<ErrorMessage>().code.alert()
+				"QueryScoreResponse" -> it.toObject<QueryScoreResponse>().apply {
+					val dataToPass = data.map { StudentScore().apply {
+						courseId = it.courseId
+						courseName = it.courseName
+						teacherId = it.teacherId
+						teacherName = it.teacherName
+						score = it.score
+					} }
+					val scene = Scene(ClientResourceManifest.STUDENT_SCORE())
+					StudentScoreController.instance.back = ClientApplication.instance.stage.scene
+					StudentScoreController.instance.passData(dataToPass)
+					ClientApplication.instance.stage.scene = scene
+				}
+			}
 		}
-		StudentScoreController.instance.back = ClientApplication.instance.stage.scene
-		StudentScoreController.instance.passData(List(100, { test }))
-		ClientApplication.instance.stage.scene = scene
-
-
 	}
-	private @FXML fun onQuit()
+	@FXML
+	private fun onQuit()
 	{
 		System.exit(0)
 	}
-
 }

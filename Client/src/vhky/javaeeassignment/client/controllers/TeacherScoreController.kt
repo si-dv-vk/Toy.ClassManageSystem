@@ -7,7 +7,7 @@ import javafx.scene.control.TableColumn
 import javafx.scene.control.TableView
 import javafx.scene.control.cell.PropertyValueFactory
 import vhky.javaeeassignment.client.ClientApplication
-import vhky.javaeeassignment.client.data.StudentScore
+import vhky.javaeeassignment.client.data.TeacherScore
 
 /**
  * No Description
@@ -24,14 +24,14 @@ class TeacherScoreController
 		instance = this
 	}
 	lateinit var back : Scene
-	private @FXML lateinit var tableView : TableView<StudentScore>
+	@FXML	private lateinit var tableView : TableView<TeacherScore>
 	//mapping = display to property
 	private val dataMapping = mapOf("Course Name" to "courseName", "Course ID" to "courseId", "Student Name" to "studentName",
 			"Student ID" to "studentId", "Score" to "score")
-	private @FXML fun initialize()
+	@FXML	private fun initialize()
 	{
-		val columns = FXCollections.observableArrayList<TableColumn<StudentScore, String>>()
-		dataMapping.forEach { display, property -> columns.add(TableColumn<StudentScore, String>(display).apply ()
+		val columns = FXCollections.observableArrayList<TableColumn<TeacherScore, String>>()
+		dataMapping.forEach { display, property -> columns.add(TableColumn<TeacherScore, String>(display).apply ()
 		{
 			cellValueFactory = PropertyValueFactory(property)
 			this.prefWidth = 116.0
@@ -40,7 +40,7 @@ class TeacherScoreController
 		tableView.columns.addAll(columns)
 		tableView.isEditable = false
 	}
-	fun passData(data : List<StudentScore>)
+	fun passData(data : List<TeacherScore>)
 	{
 		tableView.items.apply()
 		{

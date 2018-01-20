@@ -1,4 +1,4 @@
-package vhky.javaeeassignment.common.data
+package vhky.javaeeassignment.common.data.prototype
 
 /**
  * No Description

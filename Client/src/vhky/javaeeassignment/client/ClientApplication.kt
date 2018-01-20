@@ -14,7 +14,7 @@ class ClientApplication : Application()
 	companion object
 	{
 		lateinit var instance : ClientApplication
-		val applicationName = "UESTC Class Manager"
+		const val applicationName = "UESTC Class Manager"
 	}
 	init
 	{
@@ -24,7 +24,7 @@ class ClientApplication : Application()
 	override fun start(stage : Stage)
 	{
 		this.stage = stage
-		stage.scene = Scene(ClientResourceManifest.STUDENT_MAIN())
+		stage.scene = Scene(ClientResourceManifest.LOGIN())
 		stage.icons.add(ClientResourceManifest.UESTC_LOGO())
 		stage.title = applicationName
 		stage.isResizable = false

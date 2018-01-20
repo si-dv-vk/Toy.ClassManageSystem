@@ -2,10 +2,9 @@ package vhky.javaeeassignment.client.controllers
 
 import javafx.fxml.FXML
 import javafx.scene.Scene
-import javafx.scene.control.Alert
 import javafx.scene.control.TextArea
 import vhky.javaeeassignment.client.ClientApplication
-import vhky.javaeeassignment.client.utils.AlertTool
+import vhky.javaeeassignment.client.utils.AlertUtil
 import vhky.javaeeassignment.client.utils.NetworkUtil
 import vhky.javaeeassignment.client.utils.alert
 import vhky.javaeeassignment.common.data.Password
@@ -32,13 +31,16 @@ class BulletinBoardController
 	lateinit var back : Scene
 	lateinit var teachingManagerPassword : Password
 
-	private @FXML lateinit var bulletinEditor : TextArea
+	@FXML
+	private lateinit var bulletinEditor : TextArea
 
-	private @FXML fun onBack()
+	@FXML
+	private fun onBack()
 	{
 		ClientApplication.instance.stage.scene = back
 	}
-	private @FXML fun onPublish()
+	@FXML
+	private fun onPublish()
 	{
 		val request = PublishBulletinRequest()
 		request.bulletin =bulletinEditor.text
@@ -49,7 +51,7 @@ class BulletinBoardController
 			when (it.messageType)
 			{
 				"ErrorMessage" -> it.toObject<ErrorMessage>().code.alert()
-				"SimpleSuccessResponse" -> AlertTool.alert("Success!")
+				"SimpleSuccessResponse" -> AlertUtil.alert("Success!")
 			}
 		}
 	}

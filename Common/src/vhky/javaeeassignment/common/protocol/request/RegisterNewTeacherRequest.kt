@@ -2,7 +2,7 @@ package vhky.javaeeassignment.common.protocol.request
 
 import org.json.JSONObject
 import vhky.javaeeassignment.common.data.Password
-import vhky.javaeeassignment.common.data.Teacher
+import vhky.javaeeassignment.common.data.prototype.Teacher
 import vhky.javaeeassignment.common.protocol.NetworkMessage
 import vhky.javaeeassignment.common.utils.toJSON
 import vhky.javaeeassignment.common.utils.toObject

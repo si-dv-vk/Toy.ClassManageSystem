@@ -20,6 +20,7 @@ object Dispatcher
 		"RegisterNewStudentRequest" -> onNewStudent(request.toObject())
 		"RegisterNewTeacherRequest" -> onNewTeacher(request.toObject())
 		"PublishBulletinRequest" -> onNewBulletin(request.toObject())
+		"QueryScoreRequest" -> onQueryScore(request.toObject())
 		else -> ErrorMessage(ErrorCode.IllegalRequestType).toString()
 	}
 }

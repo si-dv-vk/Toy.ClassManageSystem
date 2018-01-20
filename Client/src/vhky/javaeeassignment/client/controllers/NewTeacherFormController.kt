@@ -9,7 +9,7 @@ import vhky.javaeeassignment.client.ClientApplication
 import vhky.javaeeassignment.client.utils.ClientKey
 import vhky.javaeeassignment.client.utils.NetworkUtil
 import vhky.javaeeassignment.common.data.Password
-import vhky.javaeeassignment.common.data.Teacher
+import vhky.javaeeassignment.common.data.prototype.Teacher
 import vhky.javaeeassignment.common.protocol.messageType
 import vhky.javaeeassignment.common.protocol.request.RegisterNewTeacherRequest
 import vhky.javaeeassignment.common.protocol.response.ErrorMessage
@@ -34,18 +34,25 @@ class NewTeacherFormController
 	lateinit var back : Scene
 	lateinit var systemManagerPassword : Password
 
-	private @FXML lateinit var idBox : TextField
-	private @FXML lateinit var nameBox : TextField
-	private @FXML lateinit var passwordBox : PasswordField
-	private @FXML lateinit var departmentBox : TextField
-	private @FXML lateinit var schoolBox : TextField
+	@FXML
+	private lateinit var idBox : TextField
+	@FXML
+	private lateinit var nameBox : TextField
+	@FXML
+	private lateinit var passwordBox : PasswordField
+	@FXML
+	private lateinit var departmentBox : TextField
+	@FXML
+	private lateinit var schoolBox : TextField
 
-	private @FXML fun onBack()
+	@FXML
+	private fun onBack()
 	{
 		ClientApplication.instance.stage.scene = back
 	}
 
-	private @FXML fun onSubmit()
+	@FXML
+	private fun onSubmit()
 	{
 		val teacher = Teacher().apply()
 		{

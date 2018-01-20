@@ -1,8 +1,5 @@
 package vhky.javaeeassignment.client.utils
 
-import javafx.scene.control.Alert
-import javafx.scene.control.ButtonType
-import vhky.javaeeassignment.client.ClientApplication
 import vhky.javaeeassignment.common.misc.ErrorCode
 import vhky.javaeeassignment.common.protocol.messageType
 import vhky.javaeeassignment.common.protocol.request.CheckBulletinRequest
@@ -24,7 +21,7 @@ object Bulletin
 			when(it.messageType)
 			{
 				"CheckBulletinResponse" ->
-					AlertTool.alert(it.toObject<CheckBulletinResponse>().text, header = "Bulletin")
+					AlertUtil.alert(it.toObject<CheckBulletinResponse>().text, header = "Bulletin")
 				"ErrorMessage" -> it.toObject<ErrorMessage>().code.alert()
 				else -> ErrorCode.Unknown.alert()
 			}
